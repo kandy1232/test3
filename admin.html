@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - AqwaGel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="AqwaGel Logo" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <span class="brand">AqwaGel</span>
+                    <span class="sub-brand">Admin Panel</span>
+                </div>
+            </a>
+            <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="admin-login" id="loginSection">
+        <div class="container">
+            <div class="login-box">
+                <img src="images/logo.svg" alt="AqwaGel" class="login-logo" onerror="this.style.display='none'">
+                <h2>Admin Login</h2>
+                <input type="password" id="adminPassword" placeholder="Enter password">
+                <button onclick="login()" class="btn btn-primary">Login</button>
+                <p class="login-hint">Default: admin123</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="admin-panel" id="adminPanel" style="display:none">
+        <div class="container">
+            <div class="admin-header">
+                <h2>Admin Dashboard</h2>
+                <button onclick="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="showTab('products')">Products</button>
+                <button class="tab-btn" onclick="showTab('add')">Add Product</button>
+                <button class="tab-btn" onclick="showTab('settings')">Settings</button>
+            </div>
+
+            <div id="productsTab" class="tab-content active">
+                <h3>Manage Products</h3>
+                <div class="admin-filters">
+                    <select id="adminCategoryFilter" onchange="filterAdminProducts()">
+                        <option value="all">All Categories</option>
+                        <option value="world-map">World Map Poster</option>
+                        <option value="sri-lanka-map">Sri Lankan Map</option>
+                        <option value="solar-system">Solar System</option>
+                        <option value="human-body">Human Body Chart</option>
+                        <option value="coloring-poster">Giant Coloring Poster</option>
+                        <option value="sinhala-alphabet">Sinhala Alphabet Chart</option>
+                        <option value="multiplication">Multiplication Table</option>
+                        <option value="national-symbols">Sri Lanka National Symbols</option>
+                        <option value="history">History of Sri Lanka</option>
+                        <option value="insects">World of Insects</option>
+                        <option value="animals">World of Animals</option>
+                        <option value="stationery">Educational Stationery Set</option>
+                    </select>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table" id="adminProductsTable">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price (LKR)</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="addTab" class="tab-content">
+                <h3>Add New Product</h3>
+                <form id="addProductForm" class="admin-form">
+                    <div class="form-group">
+                        <label>Product Name (English)</label>
+                        <input type="text" id="newProductName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Product Name (Sinhala)</label>
+                        <input type="text" id="newProductNameSi">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="newProductCategory" required>
+                            <option value="world-map">World Map Poster</option>
+                            <option value="sri-lanka-map">Sri Lankan Map</option>
+                            <option value="solar-system">Solar System</option>
+                            <option value="human-body">Human Body Chart</option>
+                            <option value="coloring-poster">Giant Coloring Poster</option>
+                            <option value="sinhala-alphabet">Sinhala Alphabet Chart</option>
+                            <option value="multiplication">Multiplication Table</option>
+                            <option value="national-symbols">Sri Lanka National Symbols</option>
+                            <option value="history">History of Sri Lanka</option>
+                            <option value="insects">World of Insects</option>
+                            <option value="animals">World of Animals</option>
+                            <option value="stationery">Educational Stationery Set</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (LKR)</label>
+                        <input type="number" id="newProductPrice" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock Status</label>
+                        <select id="newProductStock">
+                            <option value="In Stock">In Stock</option>
+                            <option value="Low Stock">Low Stock</option>
+                            <option value="Out of Stock">Out of Stock</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URL</label>
+                        <input type="text" id="newProductImage" placeholder="images/product.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="newProductDesc" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Title (English)</label>
+                        <input type="text" id="newMetaTitle">
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Description (English)</label>
+                        <textarea id="newMetaDesc" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Title (Sinhala)</label>
+                        <input type="text" id="newMetaTitleSi">
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Description (Sinhala)</label>
+                        <textarea id="newMetaDescSi" rows="2"></textarea>
+                    </div>
+                    <button type="button" onclick="addProduct()" class="btn btn-primary">Add Product</button>
+                </form>
+            </div>
+
+            <div id="settingsTab" class="tab-content">
+                <h3>Site Settings</h3>
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h4>Business Information</h4>
+                        <div class="form-group">
+                            <label>Business Name</label>
+                            <input type="text" id="settingBusinessName" value="AqwaGel by Artyhomes Pvt Ltd">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" id="settingAddress" value="No 17, Wikramasinghepura, Battaramulla">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone/WhatsApp</label>
+                            <input type="text" id="settingPhone" value="+94 71 729 9504">
+                        </div>
+                        <button onclick="saveSettings()" class="btn btn-primary">Save Settings</button>
+                    </div>
+                    <div class="settings-card">
+                        <h4>Data Management</h4>
+                        <button onclick="exportData()" class="btn btn-secondary">Export Data (JSON)</button>
+                        <button onclick="resetData()" class="btn btn-danger">Reset to Default</button>
+                        <p class="settings-note">Note: Data is stored in browser localStorage and will reset if cache is cleared.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/logo.svg" alt="AqwaGel" class="footer-logo" onerror="this.style.display='none'">
+                    <h3>AqwaGel</h3>
+                    <p>A fully owned subsidiary of <strong>Artyhomes Pvt Ltd</strong></p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>No 17, Wikramasinghepura, Battaramulla</p>
+                    <p>+94 71 729 9504</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 AqwaGel by Artyhomes Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="admin.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

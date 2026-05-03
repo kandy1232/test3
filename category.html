@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Products - AqwaGel</title>
+    <meta name="description" content="Browse educational posters and maps at AqwaGel. High quality products for children.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="AqwaGel Logo" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <span class="brand">AqwaGel</span>
+                    <span class="sub-brand">by Artyhomes Pvt Ltd</span>
+                </div>
+            </a>
+            <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Products ▼</a>
+                    <div class="dropdown-content">
+                        <a href="category.html?cat=world-map">World Map Poster</a>
+                        <a href="category.html?cat=sri-lanka-map">Sri Lankan Map</a>
+                        <a href="category.html?cat=solar-system">Solar System</a>
+                        <a href="category.html?cat=human-body">Human Body Chart</a>
+                        <a href="category.html?cat=coloring-poster">Giant Coloring Poster</a>
+                        <a href="category.html?cat=sinhala-alphabet">Sinhala Alphabet Chart</a>
+                        <a href="category.html?cat=multiplication">Multiplication Table</a>
+                        <a href="category.html?cat=national-symbols">Sri Lanka National Symbols</a>
+                        <a href="category.html?cat=history">History of Sri Lanka</a>
+                        <a href="category.html?cat=insects">World of Insects</a>
+                        <a href="category.html?cat=animals">World of Animals</a>
+                        <a href="category.html?cat=stationery">Educational Stationery Set</a>
+                    </div>
+                </li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 id="categoryTitle">Products</h1>
+            <p id="categorySubtitle">Browse our collection</p>
+        </div>
+    </section>
+
+    <section class="products-page">
+        <div class="container">
+            <div class="products-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+                </div>
+                <div class="filter-sort">
+                    <select id="sortSelect" onchange="sortProducts()">
+                        <option value="default">Sort by</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+            <div class="products-grid" id="productsGrid"></div>
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/logo.svg" alt="AqwaGel" class="footer-logo" onerror="this.style.display='none'">
+                    <h3>AqwaGel</h3>
+                    <p>A fully owned subsidiary of <strong>Artyhomes Pvt Ltd</strong></p>
+                    <p>Premium educational posters since 2002</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="admin.html">Admin Panel</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>No 17, Wikramasinghepura, Battaramulla</p>
+                    <p>+94 71 729 9504</p>
+                    <p>info@aqwagel.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 AqwaGel by Artyhomes Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/94717299504" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <span>💬</span>
+    </a>
+
+    <script src="data.js"></script>
+    <script src="category.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
